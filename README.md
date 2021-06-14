@@ -19,14 +19,6 @@
 * [Validation](https://docs.spring.io/spring-boot/docs/2.5.0/reference/htmlsingle/#boot-features-validation)
 * [Jasypt](https://www.baeldung.com/spring-boot-jasypt)
 
-### Гайды
-Дополнительные руководства:
-
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-
 ### Дополнительные ссылки
 
 * [jasypt - страница шифрования](https://www.devglan.com/online-tools/jasypt-online-encryption-decryption)
