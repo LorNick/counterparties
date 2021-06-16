@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 import ru.krivko.entity.Counterparty;
+import ru.krivko.exception.ExceptionHandler;
 import ru.krivko.service.CounterpartyService;
 
 /**
@@ -102,15 +104,18 @@ public class CounterpartyWebController {
      */
     @PostMapping("/update")
     public String updateCounterparty(@Valid @ModelAttribute("command") Counterparty counterparty,
-                                     BindingResult bindingResult, Model model) {
+                                     BindingResult bindingResult) {
         log.info("**** Попытались зафиксировать редактируемого контрагента");
         if (bindingResult.hasErrors()) {
             log.info("**** При редактирования контрагента, не прошли валидацию");
             return "counterpartyUpdate";
         }
-        if (counterpartyService.update(counterparty.getId(), counterparty)) {
-            return "redirect:/counterparties";
-        } else {
+        try {
+            if (counterpartyService.update(counterparty.getId(), counterparty) != null) {
+                return "redirect:/counterparties";
+            }
+            return "counterpartyUpdate";
+        } catch (Exception e) {
             return "counterpartyUpdate";
         }
     }

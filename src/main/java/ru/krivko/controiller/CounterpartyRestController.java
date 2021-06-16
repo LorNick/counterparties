@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -69,7 +70,6 @@ public class CounterpartyRestController {
         throw new NotFoundException("Не удалось найти контрагент по id = " + id);
     }
 
-
     /**
      * Возвращаем контрагент по имени
      *
@@ -108,22 +108,24 @@ public class CounterpartyRestController {
      * Изменяем контрагент
      *
      * @param counterparty json данные контрагента
-     * @return в случае успеха получаем контрагента и код 200, иначе код 304
+     * @return в случае успеха получаем контрагента и код 200, иначе код 404
      */
     @PutMapping
     public ResponseEntity<Counterparty> update(@RequestBody @Valid Counterparty counterparty) {
-        if (counterpartyService.update(counterparty.getId(), counterparty)) {
+        Counterparty counterpartyUpdate = counterpartyService.update(counterparty.getId(), counterparty);
+        if (counterpartyUpdate != null) {
             log.info("**** Изменили контрагент с id = " + counterparty.getId());
             return new ResponseEntity<>(counterparty, HttpStatus.OK);
         }
-        throw new NotFoundException("Не удалось изменить контрагента с id = " + counterparty.getId());
+        throw new NotFoundException("Не нашли контрагента с id = " + counterparty.getId()
+                + " для того что бы его изменить");
     }
 
     /**
      * Удаляем контрагент по id
      *
      * @param id код контрагента
-     * @return если нашли и удалили контрагент то код 200, иначе код 304
+     * @return если нашли и удалили контрагент то код 200, иначе код 404
      */
     @DeleteMapping("/delete_id")
     public ResponseEntity<Counterparty> deleteId(@RequestParam long id) {
@@ -138,7 +140,7 @@ public class CounterpartyRestController {
      * Удаляем контрагент по имени
      *
      * @param name имя контрагента
-     * @return если нашли и удалили контрагент то код 200, иначе код 304
+     * @return если нашли и удалили контрагент то код 200, иначе код 404
      */
     @DeleteMapping("/delete_name")
     public ResponseEntity<Counterparty> deleteName(@RequestParam String name) {

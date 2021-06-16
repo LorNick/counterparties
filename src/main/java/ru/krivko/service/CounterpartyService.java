@@ -50,23 +50,19 @@ public class CounterpartyService {
      * * @param id - id изменяемого контрагента
      *
      * @param counterparty - новые данные контрагента
+     * @return counterparty - изменённый контрагент или null
      */
-    public boolean update(long id, Counterparty counterparty) {
+    public Counterparty update(long id, Counterparty counterparty) {
         Counterparty currentCounterparty = counterpartyRepository.findById(id).orElse(null);
         if (currentCounterparty == null) {
-            return false;
+            return null;
         }
         currentCounterparty.setName(counterparty.getName());
         currentCounterparty.setInn(counterparty.getInn());
         currentCounterparty.setKpp(counterparty.getKpp());
         currentCounterparty.setAccountNumber(counterparty.getAccountNumber());
         currentCounterparty.setBic(counterparty.getBic());
-        try {
-            counterpartyRepository.saveAndFlush(counterparty);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return counterpartyRepository.save(counterparty);
     }
 
     /**

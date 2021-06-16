@@ -31,7 +31,7 @@ class CounterpartyRestControllerTest {
             DEFAULT_INN, DEFAULT_KOP, DEFAULT_ACCOUNT_NUMBER, DEFAULT_BIC);
 
     /**
-     * Создаем новую тестовую запись и находим её id
+     * Создаем новую тестовую запись и возвращаем её
      */
     public Counterparty createTestRecordCounterparty() {
         return restTemplate.postForEntity("/api/counterparties/", DEFAULT_COUNTERPARTY, Counterparty.class).getBody();
