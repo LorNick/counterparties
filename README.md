@@ -4,6 +4,22 @@
 ### Задание
 Разработать модель данных, REST сервисы и web сайт для работы со «Справочником контрагентов»
 
+Запуск web страницы: http://localhost:8080/counterparties
+
+REST API:
+
+| Запрос  |  Действие |url http://localhost:8080                
+| ------- |:---|:---
+| PUT     | обновляем | [/api/counterparties](http://localhost:8080/api/counterparties)    
+| POST    | изменяем | [/api/counterparties](http://localhost:8080/api/counterparties) 
+| DELETE  | удаляем по id | [/api/counterparties/delete_id?id=5](http://localhost:8080//api/counterparties/delete_id?id=5)
+| DELETE  | удаляем по name | [/api/counterparties/delete_name?name=ВТБ](http://localhost:8080//api/counterparties/delete_name?name=ВТБ)
+| GET     | ищем по id | [/api/counterparties/get_id?id=5](http://localhost:8080//api/counterparties/get_id?id=5)
+| GET  | ищем по name | [/api/counterparties/get_name?name=ВТБ](http://localhost:8080//api/counterparties/get_name?name=ВТБ)
+| GET  | ищем все | [/api/counterparties/get_al](http://localhost:8080//api/counterparties/get_all)
+| GET  | ищем по № и bic | [/api/counterparties/get_anb?accountNumber=30101810100000000835&bic=042007835](http://localhost:8080//api/counterparties/get_anb?accountNumber=30101810100000000835&bic=042007835)
+
+
 ### Справочная документация (стащил от сюда [Spring.io](https://start.spring.io/))
 Используемый стек:
 

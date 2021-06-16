@@ -2,12 +2,10 @@ package ru.krivko.controiller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 import ru.krivko.entity.Counterparty;
@@ -19,7 +17,7 @@ import ru.krivko.service.CounterpartyService;
 @Slf4j
 @Controller
 @RequestMapping("counterparties")
-public class CounterpartyController {
+public class CounterpartyWebController {
 
     @Autowired
     private CounterpartyService counterpartyService;
@@ -110,14 +108,9 @@ public class CounterpartyController {
             log.info("**** При редактирования контрагента, не прошли валидацию");
             return "counterpartyUpdate";
         }
-        // Додумать это не пойдет!!11111
-        try {
-            if (counterpartyService.update(counterparty.getId(), counterparty)) {
-                return "redirect:/counterparties";
-            } else {
-                return "counterpartyUpdate";
-            }
-        } catch (DataIntegrityViolationException e) {
+        if (counterpartyService.update(counterparty.getId(), counterparty)) {
+            return "redirect:/counterparties";
+        } else {
             return "counterpartyUpdate";
         }
     }

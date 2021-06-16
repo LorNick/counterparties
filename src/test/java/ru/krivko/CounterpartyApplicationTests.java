@@ -3,7 +3,7 @@ package ru.krivko;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.krivko.controiller.CounterpartyController;
+import ru.krivko.controiller.CounterpartyWebController;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CounterpartyApplicationTests {
 
 	@Autowired
-	private CounterpartyController counterpartyController;
+	private CounterpartyWebController counterpartyController;
 
 	@Test
 	void contextLoads() {

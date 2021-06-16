@@ -5,19 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.krivko.entity.Counterparty;
-import ru.krivko.service.CounterpartyService;
-
 import javax.validation.Valid;
 import java.util.List;
+
+import ru.krivko.entity.Counterparty;
+import ru.krivko.exception.NotFoundException;
+import ru.krivko.service.CounterpartyService;
 
 /**
  * REST API контроллер контрагента
  */
 @Slf4j
-@Validated
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/counterparties")
@@ -30,13 +29,13 @@ public class CounterpartyRestController {
      * Создание нового контрагента
      *
      * @param counterparty новый контрагент
-     * @return возврат код 201
+     * @return возврат код 201, в случае ошибки сервер выдает код 500
      */
     @PostMapping
     public ResponseEntity<Counterparty> create(@RequestBody Counterparty counterparty) {
         counterpartyService.create(counterparty);
         log.info("**** Создаем нового контрагента");
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(counterparty, HttpStatus.CREATED);
     }
 
     /**
@@ -51,8 +50,7 @@ public class CounterpartyRestController {
             log.info("**** Находим все контрагенты");
             return new ResponseEntity<>(counterpartyList, HttpStatus.OK);
         }
-        log.info("**** Не удалось найти все контрагенты");
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new NotFoundException("Нет ни одного контрагента");
     }
 
     /**
@@ -68,8 +66,7 @@ public class CounterpartyRestController {
             log.info("**** Находим контрагент по id = " + id);
             return new ResponseEntity<>(counterparty, HttpStatus.OK);
         }
-        log.info("**** Не удалось найти контрагент по id = " + id);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new NotFoundException("Не удалось найти контрагент по id = " + id);
     }
 
 
@@ -86,8 +83,7 @@ public class CounterpartyRestController {
             log.info("**** Находим контрагент по имени = " + name);
             return new ResponseEntity<>(counterpartyList.get(0), HttpStatus.OK);
         }
-        log.info("**** Не удалось найти контрагент по имени = " + name);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new NotFoundException("Не удалось найти контрагент по name = " + name);
     }
 
     /**
@@ -105,8 +101,7 @@ public class CounterpartyRestController {
             log.info("**** Находим контрагент по номеру счета = " + accountNumber + " и БИК = " + bic);
             return new ResponseEntity<>(counterpartyList, HttpStatus.OK);
         }
-        log.info("**** Не удалось найти контрагент по номеру счета = " + accountNumber + " и БИК = " + bic);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new NotFoundException("Не удалось найти контрагент по номеру счета = " + accountNumber + " и БИК = " + bic);
     }
 
     /**
@@ -118,11 +113,10 @@ public class CounterpartyRestController {
     @PutMapping
     public ResponseEntity<Counterparty> update(@RequestBody @Valid Counterparty counterparty) {
         if (counterpartyService.update(counterparty.getId(), counterparty)) {
-            log.info("**** Удаляем контрагента с id = " + counterparty.getId());
+            log.info("**** Изменили контрагент с id = " + counterparty.getId());
             return new ResponseEntity<>(counterparty, HttpStatus.OK);
         }
-        log.info("**** Не удалось удалить контрагента с id = " + counterparty.getId());
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        throw new NotFoundException("Не удалось изменить контрагента с id = " + counterparty.getId());
     }
 
     /**
@@ -137,8 +131,7 @@ public class CounterpartyRestController {
             log.info("**** Удаляем контрагента с id = " + id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        log.info("**** Не удалось удалить контрагента с id = " + id);
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        throw new NotFoundException("Не удалось удалить контрагента с id = " + id);
     }
 
     /**
@@ -155,7 +148,6 @@ public class CounterpartyRestController {
             log.info("**** Удаляем контрагента с name = " + name);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        log.info("**** Не удалось удалить контрагента с name = " + name);
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        throw new NotFoundException("Не удалось удалить контрагента с name = " + name);
     }
 }

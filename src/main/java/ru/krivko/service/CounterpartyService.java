@@ -27,7 +27,7 @@ public class CounterpartyService {
     }
 
     /**
-     * Возвращает 1го контрагента
+     * Возвращает контрагента по id
      *
      * @param id - id контрагента
      * @return список контрагентов
@@ -41,8 +41,8 @@ public class CounterpartyService {
      *
      * @param counterparty - новый контрагент
      */
-    public void create(Counterparty counterparty) {
-        counterpartyRepository.save(counterparty);
+    public Counterparty create(Counterparty counterparty) {
+        return counterpartyRepository.save(counterparty);
     }
 
     /**
@@ -62,12 +62,9 @@ public class CounterpartyService {
         currentCounterparty.setAccountNumber(counterparty.getAccountNumber());
         currentCounterparty.setBic(counterparty.getBic());
         try {
-
-
-        counterpartyRepository.saveAndFlush(counterparty);
+            counterpartyRepository.saveAndFlush(counterparty);
             return true;
         } catch (Exception e) {
-            System.out.println(e);
             return false;
         }
     }

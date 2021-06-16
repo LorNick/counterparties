@@ -40,4 +40,12 @@ public class Counterparty {
     @Pattern(regexp = "\\d{9}$", message = "Введите 9 цифр")
     @Column(nullable = false)
     private String bic;
+
+    public Counterparty(String name, String inn, String kpp, String accountNumber, String bic) {
+        this.name = name;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.accountNumber = accountNumber;
+        this.bic = bic;
+    }
 }

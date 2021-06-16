@@ -21,7 +21,7 @@ public class ValidAccountNumberAndBicValidator
         }
         if (counterparty.getAccountNumber() == null || counterparty.getBic() == null) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("{ru.krivko.validate.validation.unique.itn}")
+            context.buildConstraintViolationWithTemplate("{ru.krivko.validate.validation.accountNumber}")
                     .addPropertyNode("accountNumber").addConstraintViolation();
             return false;
         }
