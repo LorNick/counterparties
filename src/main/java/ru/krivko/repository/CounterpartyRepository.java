@@ -10,5 +10,6 @@ import java.util.List;
  */
 public interface CounterpartyRepository extends JpaRepository<Counterparty, Long> {
     List<Counterparty> findFirstByName(String name);
+
     List<Counterparty> findFirstByBicAndAccountNumber(String bic, String accountNumber);
 }

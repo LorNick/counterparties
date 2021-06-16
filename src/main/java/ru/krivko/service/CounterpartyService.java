@@ -103,5 +103,4 @@ public class CounterpartyService {
     public List<Counterparty> searchBicAndAccountNumber(String bic, String accountNumber) {
         return counterpartyRepository.findFirstByBicAndAccountNumber(bic, accountNumber);
     }
-
 }
