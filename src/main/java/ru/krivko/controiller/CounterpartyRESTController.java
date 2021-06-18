@@ -21,7 +21,7 @@ import ru.krivko.service.CounterpartyService;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/counterparties")
-public class CounterpartyApiController {
+public class CounterpartyRESTController {
 
     @Autowired
     private final CounterpartyService counterpartyService;

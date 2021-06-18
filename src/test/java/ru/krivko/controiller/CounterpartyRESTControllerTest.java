@@ -15,7 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * Тестируем REST API контроллер, с запущенным сервером
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class CounterpartyApiControllerTest {
+class CounterpartyRESTControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
