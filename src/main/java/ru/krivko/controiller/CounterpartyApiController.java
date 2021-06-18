@@ -21,7 +21,7 @@ import ru.krivko.service.CounterpartyService;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/counterparties")
-public class CounterpartyRestController {
+public class CounterpartyApiController {
 
     @Autowired
     private final CounterpartyService counterpartyService;
@@ -30,7 +30,7 @@ public class CounterpartyRestController {
      * Создание нового контрагента
      *
      * @param counterparty новый контрагент
-     * @return возврат код 201, в случае ошибки сервер выдает код 500
+     * @return возврат код 201, в случае ошибки сервер выдает код 500 или 400
      */
     @PostMapping
     public ResponseEntity<Counterparty> create(@RequestBody Counterparty counterparty) {
@@ -62,7 +62,7 @@ public class CounterpartyRestController {
      */
     @GetMapping("get_id")
     public ResponseEntity<Counterparty> getId(@RequestParam long id) {
-        Counterparty counterparty = counterpartyService.read(id).orElse(null);
+        var counterparty = counterpartyService.read(id).orElse(null);
         if (counterparty != null) {
             log.info("**** Находим контрагент по id = " + id);
             return new ResponseEntity<>(counterparty, HttpStatus.OK);
@@ -108,11 +108,12 @@ public class CounterpartyRestController {
      * Изменяем контрагент
      *
      * @param counterparty json данные контрагента
-     * @return в случае успеха получаем контрагента и код 200, иначе код 404
+     * @return в случае успеха получаем контрагента и код 200,
+     *      иначе код 404 если не нашли что менять, или 400 если всё плохо
      */
     @PutMapping
     public ResponseEntity<Counterparty> update(@RequestBody @Valid Counterparty counterparty) {
-        Counterparty counterpartyUpdate = counterpartyService.update(counterparty.getId(), counterparty);
+        var counterpartyUpdate = counterpartyService.update(counterparty.getId(), counterparty);
         if (counterpartyUpdate != null) {
             log.info("**** Изменили контрагент с id = " + counterparty.getId());
             return new ResponseEntity<>(counterparty, HttpStatus.OK);

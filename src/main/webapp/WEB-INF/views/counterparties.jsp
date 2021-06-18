@@ -2,9 +2,9 @@
   Список контрагентов
 --%>
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<html lang="ru">
 <head>
     <title>Контрагенты</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
@@ -30,15 +30,15 @@
         <input type="submit" value="Новый контрагент" class="button24" title="Добавляет новый контрагент" style="margin-bottom:6px"/>
     </form>
     <div class="form-style-3">
-    <table border="2" cellpadding="10">
+    <table border="2">
         <tr>
-            <th>id</th>
-            <th>Имя контрагента</th>
-            <th>ИНН</th>
-            <th>КПП</th>
-            <th>Номер счета</th>
-            <th>Бик</th>
-            <th>Действия</th>
+            <th scope="col">id</th>
+            <th scope="col">Имя контрагента</th>
+            <th scope="col">ИНН</th>
+            <th scope="col">КПП</th>
+            <th scope="col">Номер счета</th>
+            <th scope="col">Бик</th>
+            <th scope="col">Действия</th>
         </tr>
         <c:forEach items="${counterparties}" var="counterparty">
             <tr>

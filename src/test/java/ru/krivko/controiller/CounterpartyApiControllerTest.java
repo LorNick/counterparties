@@ -12,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 /**
- * Тестируем REST контроллер, с запущенным сервером
+ * Тестируем REST API контроллер, с запущенным сервером
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class CounterpartyRestControllerTest {
+class CounterpartyApiControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;

@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ValidAccountNumberAndBicValidator.class)
-public @interface ValidAccountNumberAnfBic {
+public @interface ValidAccountNumberAndBic {
     String message() default "Номер расчетного счета и БИК не валидны";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

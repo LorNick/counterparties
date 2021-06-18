@@ -9,9 +9,10 @@ import javax.validation.ConstraintValidatorContext;
  * Валидация номера счета и БИК
  */
 public class ValidAccountNumberAndBicValidator
-        implements ConstraintValidator<ValidAccountNumberAnfBic, Counterparty> {
+        implements ConstraintValidator<ValidAccountNumberAndBic, Counterparty> {
+
     @Override
-    public void initialize(ValidAccountNumberAnfBic constraintAnnotation) {
+    public void initialize(ValidAccountNumberAndBic constraintAnnotation) {
     }
 
     @Override
@@ -21,8 +22,8 @@ public class ValidAccountNumberAndBicValidator
         }
         if (counterparty.getAccountNumber() == null || counterparty.getBic() == null) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("{ru.krivko.validate.validation.accountNumber}")
-                    .addPropertyNode("accountNumber").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate("{message}")
+                    .addPropertyNode("accountNumber1").addConstraintViolation();
             return false;
         }
 

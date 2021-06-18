@@ -16,7 +16,7 @@ public class ExceptionHandler {
      */
     @org.springframework.web.bind.annotation.ExceptionHandler
     public ResponseEntity<CounterpartyIncorrectData> handleException(NotFoundException exception) {
-        CounterpartyIncorrectData data = new CounterpartyIncorrectData();
+        var data = new CounterpartyIncorrectData();
         data.setInfo(exception.getMessage());
         log.info("**** " + exception.getMessage());
         return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
@@ -30,7 +30,7 @@ public class ExceptionHandler {
      */
     @org.springframework.web.bind.annotation.ExceptionHandler
     public ResponseEntity<CounterpartyIncorrectData> handleException(Exception exception) {
-        CounterpartyIncorrectData data = new CounterpartyIncorrectData();
+        var data = new CounterpartyIncorrectData();
         data.setInfo(exception.getMessage());
         return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
     }

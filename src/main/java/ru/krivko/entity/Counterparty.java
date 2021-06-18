@@ -2,7 +2,7 @@ package ru.krivko.entity;
 
 import lombok.*;
 import org.hibernate.validator.constraints.ru.INN;
-import ru.krivko.validate.ValidAccountNumberAnfBic;
+import ru.krivko.validate.ValidAccountNumberAndBic;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ValidAccountNumberAnfBic // тут проверяем валидацию счета и бик
+@ValidAccountNumberAndBic // тут проверяем валидацию счета и бик
 @Entity
 @Table(name = "counterparty")
 public class Counterparty {
