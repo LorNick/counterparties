@@ -33,7 +33,6 @@ REST API:
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.5.0/reference/htmlsingle/#boot-features-jpa-and-spring-data)
 * [Hibernate](https://www.baeldung.com/spring-boot-hibernate)
 * [PostgreSQL](https://www.postgresql.org/)
-* [Liquibase Migration](https://docs.spring.io/spring-boot/docs/2.5.0/reference/htmlsingle/#howto-execute-liquibase-database-migrations-on-startup) - не осилил пока, конфликтует с Spring Data JPA
 * [Validation](https://docs.spring.io/spring-boot/docs/2.5.0/reference/htmlsingle/#boot-features-validation)
 * [Jasypt](https://www.baeldung.com/spring-boot-jasypt)
 

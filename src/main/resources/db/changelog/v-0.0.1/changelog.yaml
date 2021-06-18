@@ -1,4 +1,0 @@
-databaseChangeLog:
-  - include:
-      # schema
-      file: initial-schema-import.sql
