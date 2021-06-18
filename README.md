@@ -11,8 +11,8 @@ REST API:
 
 | Запрос  |  Действие |url http://localhost:8080                
 | ------- |:---|:---
-| PUT     | обновляем | [/api/counterparties](http://localhost:8080/api/counterparties)    
-| POST    | изменяем | [/api/counterparties](http://localhost:8080/api/counterparties) 
+| PUT     | изменяем | [/api/counterparties](http://localhost:8080/api/counterparties)    
+| POST    | создать | [/api/counterparties](http://localhost:8080/api/counterparties) 
 | DELETE  | удаляем по id | [/api/counterparties/delete_id?id=5](http://localhost:8080//api/counterparties/delete_id?id=5)
 | DELETE  | удаляем по name | [/api/counterparties/delete_name?name=ВТБ](http://localhost:8080//api/counterparties/delete_name?name=ВТБ)
 | GET     | ищем по id | [/api/counterparties/get_id?id=5](http://localhost:8080//api/counterparties/get_id?id=5)
