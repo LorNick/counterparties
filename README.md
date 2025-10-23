@@ -1,5 +1,5 @@
 
-## Курсовая работа 
+## Контрагенты 
 [презентация](https://docs.google.com/presentation/d/1ym0l3kpkjDe1biUw7uKraVv5ymegVsb4cxY5ATSdDhc/edit?usp=sharing)
 
 ### Задание
